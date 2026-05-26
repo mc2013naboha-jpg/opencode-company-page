@@ -3,42 +3,844 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>О компании</title>
+    <title>WorkHere - о компании</title>
     <style>
       :root {
         color-scheme: light;
-        font-family: Arial, sans-serif;
-        background: #f6f3ee;
-        color: #1f2933;
+        --ink: #111217;
+        --muted: #3a3a43;
+        --blue: #3b8cff;
+        --cyan: #9eeff8;
+        --yellow: #ffe276;
+        --green: #6bea9b;
+        --mint: #b5ffc9;
+        --cream: #f3f0e8;
+        --paper: #fffdf8;
+        --pink: #ffd6d6;
+        --line: rgba(17, 18, 23, 0.12);
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--paper);
+        color: var(--ink);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
-        min-height: 100vh;
         margin: 0;
-        display: grid;
-        place-items: center;
+        min-width: 320px;
+        background:
+          radial-gradient(circle at 9px 9px, rgba(17, 18, 23, 0.07) 1.5px, transparent 1.7px) 0 0 / 58px 58px,
+          radial-gradient(circle at 88% 12%, rgba(59, 140, 255, 0.12), transparent 22vw),
+          radial-gradient(circle at 8% 48%, rgba(107, 234, 155, 0.14), transparent 20vw),
+          linear-gradient(180deg, #fffdf8 0%, #fbfaf4 45%, #fffdf8 100%);
       }
 
-      main {
-        width: min(92vw, 760px);
-        padding: 56px 32px;
-        border-radius: 28px;
-        background: #ffffff;
-        box-shadow: 0 24px 80px rgba(31, 41, 51, 0.12);
-        text-align: center;
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      body::before {
+        background-image:
+          linear-gradient(35deg, transparent 47%, rgba(17, 18, 23, 0.16) 48%, rgba(17, 18, 23, 0.16) 52%, transparent 53%),
+          linear-gradient(125deg, transparent 47%, rgba(17, 18, 23, 0.16) 48%, rgba(17, 18, 23, 0.16) 52%, transparent 53%);
+        background-size: 96px 96px;
+        background-position: 18px 28px;
+        opacity: 0.18;
+      }
+
+      body::after {
+        background:
+          radial-gradient(ellipse at 2% 9%, transparent 0 9vw, rgba(17, 18, 23, 0.78) 9.1vw 9.3vw, transparent 9.4vw),
+          radial-gradient(ellipse at -2% 17%, transparent 0 7vw, rgba(17, 18, 23, 0.72) 7.1vw 7.3vw, transparent 7.4vw),
+          radial-gradient(ellipse at 100% 72%, transparent 0 10vw, rgba(17, 18, 23, 0.08) 10.1vw 10.3vw, transparent 10.4vw);
+        opacity: 0.42;
+      }
+
+      img,
+      svg {
+        max-width: 100%;
+      }
+
+      .page {
+        overflow: hidden;
+      }
+
+      .section {
+        padding: clamp(72px, 9vw, 132px) clamp(20px, 6vw, 96px);
+      }
+
+      .container {
+        width: min(100%, 1320px);
+        margin: 0 auto;
+      }
+
+      .hero {
+        min-height: 760px;
+        display: grid;
+        align-items: center;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(300px, 0.8fr) minmax(420px, 1.2fr);
+        gap: clamp(36px, 6vw, 86px);
+        align-items: center;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
       }
 
       h1 {
-        margin: 0;
-        font-size: clamp(36px, 8vw, 72px);
-        line-height: 1.05;
+        margin-bottom: 52px;
+        font-size: clamp(48px, 6.8vw, 88px);
+        line-height: 1.12;
+        letter-spacing: -0.055em;
+      }
+
+      .accent {
+        color: var(--blue);
+      }
+
+      .hero p {
+        max-width: 610px;
+        margin-bottom: 0;
+        font-size: clamp(22px, 2.05vw, 34px);
+        line-height: 1.28;
+      }
+
+      .product-wrap {
+        position: relative;
+      }
+
+      .product-wrap::before {
+        content: "";
+        position: absolute;
+        inset: -54px -44px 52px 54px;
+        z-index: 0;
+        border-radius: 28px;
+        background: var(--pink);
+      }
+
+      .product-card {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        border: 1.5px solid var(--ink);
+        border-radius: 24px;
+        background: #fff;
+        box-shadow: 0 24px 48px rgba(17, 18, 23, 0.12);
+      }
+
+      .app-shell {
+        display: grid;
+        grid-template-columns: 170px 1fr;
+        min-height: 430px;
+      }
+
+      .sidebar {
+        padding: 18px 12px;
+        background: linear-gradient(180deg, #d55098, #f5c56b);
+        color: #fff;
+        font-size: 12px;
+      }
+
+      .side-item {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin-bottom: 11px;
+        padding: 10px 9px;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .side-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.78);
+      }
+
+      .app-main {
+        display: grid;
+        grid-template-rows: 48px 1fr;
+        background: #fafafa;
+      }
+
+      .app-top {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 0 18px;
+        border-bottom: 1px solid #ececf1;
+        color: #777681;
+        font-size: 12px;
+      }
+
+      .app-top strong {
+        color: var(--ink);
+      }
+
+      .app-content {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: 14px;
+        padding: 14px;
+      }
+
+      .candidate-list {
+        display: grid;
+        gap: 9px;
+      }
+
+      .candidate {
+        min-height: 75px;
+        padding: 11px 12px 11px 50px;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: inset 0 0 0 1px #eeeeef;
+        font-size: 11px;
+        position: relative;
+      }
+
+      .candidate::before {
+        content: "";
+        position: absolute;
+        left: 12px;
+        top: 13px;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ffb11f, #d54a7e);
+      }
+
+      .candidate:first-child {
+        background: #ffe4dd;
+      }
+
+      .profile {
+        overflow: hidden;
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: inset 0 0 0 1px #eeeeef;
+      }
+
+      .profile-hero {
+        display: grid;
+        place-items: center;
+        min-height: 165px;
+        padding: 24px;
+        background:
+          radial-gradient(circle at 60% 10%, rgba(255, 255, 255, 0.55), transparent 18%),
+          linear-gradient(135deg, #ffe1ef, #ff7ab6 76%);
+        text-align: center;
+      }
+
+      .avatar {
+        width: 78px;
+        height: 78px;
+        margin: 0 auto 10px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ff9f45, #ffd66e 48%, #87e9ff 49%);
+        border: 4px solid rgba(255, 255, 255, 0.65);
+      }
+
+      .profile-body {
+        padding: 16px;
+      }
+
+      .status-row,
+      .tabs,
+      .info-lines {
+        display: flex;
+        gap: 9px;
+        flex-wrap: wrap;
+      }
+
+      .pill {
+        min-width: 86px;
+        height: 22px;
+        border-radius: 999px;
+        background: #ffe3df;
+      }
+
+      .pill.green {
+        background: #38d76f;
+      }
+
+      .tabs {
+        margin: 14px 0;
+      }
+
+      .tab {
+        width: 68px;
+        height: 10px;
+        border-radius: 999px;
+        background: #f2d6dc;
+      }
+
+      .line {
+        width: 100%;
+        height: 11px;
+        border-radius: 999px;
+        background: #f2f2f3;
+      }
+
+      .stats {
+        border-top: 2px solid var(--ink);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .stats-stage {
+        position: relative;
+        min-height: 660px;
+      }
+
+      .bubble {
+        position: absolute;
+        display: grid;
+        place-items: center;
+        width: clamp(260px, 28vw, 420px);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        text-align: center;
+      }
+
+      .bubble strong {
+        display: block;
+        font-size: clamp(72px, 8vw, 122px);
+        font-weight: 400;
+        line-height: 0.95;
+      }
+
+      .bubble span {
+        display: block;
+        margin-top: 14px;
+        font-size: clamp(22px, 2.2vw, 36px);
+        line-height: 1.08;
+      }
+
+      .bubble.cyan {
+        left: 6%;
+        top: 0;
+        background: var(--cyan);
+      }
+
+      .bubble.yellow {
+        left: 39%;
+        top: 135px;
+        background: var(--yellow);
+      }
+
+      .bubble.green {
+        right: 2%;
+        top: 290px;
+        background: var(--green);
+      }
+
+      .mission {
+        position: relative;
+        padding-top: clamp(110px, 14vw, 190px);
+        padding-bottom: clamp(110px, 14vw, 190px);
+      }
+
+      .mission-card {
+        position: relative;
+        width: min(100%, 1120px);
+        margin: 0 auto;
+        padding: clamp(72px, 10vw, 140px) clamp(26px, 8vw, 130px);
+        background: var(--cream);
+        transform: rotate(-4deg);
+      }
+
+      .mission-card::before,
+      .mission-card::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        background: var(--cream);
+      }
+
+      .mission-card::before {
+        inset: 18% -10% 18% -8%;
+        transform: rotate(8deg);
+      }
+
+      .mission-card::after {
+        inset: 48% -5% -18% 8%;
+        transform: rotate(1deg);
+      }
+
+      .mission-text {
+        transform: rotate(4deg);
+        margin: 0 auto;
+        max-width: 820px;
+        font-size: clamp(38px, 5.2vw, 70px);
+        line-height: 1.28;
         letter-spacing: -0.04em;
+        text-align: center;
+      }
+
+      .history {
+        border-top: 1px solid var(--line);
+      }
+
+      .section-title {
+        max-width: 940px;
+        margin: 0 auto clamp(58px, 7vw, 96px);
+        font-size: clamp(38px, 5vw, 68px);
+        line-height: 1.18;
+        letter-spacing: -0.04em;
+        text-align: center;
+      }
+
+      .shape-word {
+        position: relative;
+        display: inline-block;
+      }
+
+      .shape-word::before,
+      .shape-word::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        opacity: 0.9;
+      }
+
+      .shape-word::before {
+        left: -66px;
+        top: 14px;
+        width: 86px;
+        height: 70px;
+        clip-path: polygon(0 0, 100% 26%, 78% 100%, 24% 98%);
+        background: #93eff9;
+      }
+
+      .shape-word::after {
+        right: -88px;
+        top: -24px;
+        width: 114px;
+        height: 98px;
+        clip-path: polygon(24% 0, 92% 22%, 100% 82%, 22% 100%, 0 34%);
+        background: #ff704a;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 52px;
+        width: min(100%, 1060px);
+        margin: 0 auto;
+      }
+
+      .history-card {
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        gap: clamp(26px, 5vw, 70px);
+        align-items: center;
+        min-height: 290px;
+        padding: clamp(32px, 5vw, 60px) clamp(34px, 7vw, 92px);
+        border-radius: 24px;
+      }
+
+      .history-card.blue {
+        background: #b7f7ff;
+      }
+
+      .history-card.green {
+        background: #b8ffc9;
+      }
+
+      .history-card.yellow {
+        background: #fff0b6;
+      }
+
+      .number {
+        position: relative;
+        display: inline-block;
+        font-size: clamp(70px, 8vw, 102px);
+        font-weight: 800;
+        font-style: italic;
+        line-height: 0.8;
+      }
+
+      .number::after {
+        content: "";
+        position: absolute;
+        left: -6px;
+        right: -12px;
+        bottom: -10px;
+        height: 28px;
+        z-index: -1;
+        border-radius: 5px;
+        background: rgba(0, 0, 0, 0.13);
+      }
+
+      .history-card.blue .number::after {
+        background: #71dcea;
+      }
+
+      .history-card.green .number::after {
+        background: #65df8d;
+      }
+
+      .history-card.yellow .number::after {
+        background: #ffd340;
+      }
+
+      .history-copy h3 {
+        margin-bottom: 28px;
+        font-size: clamp(28px, 3.1vw, 46px);
+        line-height: 1.25;
+        letter-spacing: -0.03em;
+      }
+
+      .history-copy p {
+        max-width: 640px;
+        margin-bottom: 0;
+        font-size: clamp(18px, 1.7vw, 25px);
+        line-height: 1.28;
+      }
+
+      .clients {
+        text-align: center;
+      }
+
+      .clients h2,
+      .cta h2 {
+        margin-bottom: 28px;
+        font-size: clamp(40px, 5vw, 72px);
+        line-height: 1.14;
+        letter-spacing: -0.045em;
+      }
+
+      .clients p,
+      .cta p {
+        max-width: 760px;
+        margin: 0 auto 70px;
+        font-size: clamp(22px, 2.2vw, 34px);
+        line-height: 1.25;
+      }
+
+      .logos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(24px, 5vw, 70px);
+        flex-wrap: wrap;
+        margin-top: 54px;
+      }
+
+      .logo {
+        display: grid;
+        place-items: center;
+        min-width: 120px;
+        min-height: 70px;
+        color: #202026;
+        font-size: clamp(24px, 2.4vw, 42px);
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        opacity: 0.85;
+      }
+
+      .logo.soft {
+        color: #b98654;
+        font-family: Georgia, serif;
+        font-weight: 400;
+        letter-spacing: 0.08em;
+      }
+
+      .logo.badge {
+        width: 140px;
+        background: #111;
+        color: #fff;
+        transform: skew(-8deg);
+      }
+
+      .logo.greenmark {
+        color: #138d42;
+      }
+
+      .cta {
+        padding-top: clamp(90px, 10vw, 150px);
+        text-align: center;
+      }
+
+      .cta h2 {
+        margin-bottom: 28px;
+      }
+
+      .cta p {
+        margin-bottom: 46px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 280px;
+        min-height: 68px;
+        padding: 18px 34px;
+        border-radius: 8px;
+        background: #18c75b;
+        color: #fff;
+        font-size: 28px;
+        line-height: 1;
+        text-decoration: none;
+        transition: transform 180ms ease, background 180ms ease;
+      }
+
+      .button:hover {
+        background: #10b84f;
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 1000px) {
+        .hero {
+          min-height: auto;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .product-wrap::before {
+          inset: -26px -18px 34px 26px;
+        }
+
+        .stats-stage {
+          min-height: auto;
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 20px;
+        }
+
+        .bubble {
+          position: static;
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .section {
+          padding: 68px 18px;
+        }
+
+        h1 {
+          margin-bottom: 28px;
+        }
+
+        .product-card {
+          border-radius: 18px;
+        }
+
+        .app-shell {
+          grid-template-columns: 86px 1fr;
+          min-height: 330px;
+        }
+
+        .sidebar {
+          padding: 10px 7px;
+        }
+
+        .side-item {
+          padding: 8px 6px;
+          font-size: 0;
+        }
+
+        .app-content {
+          grid-template-columns: 1fr;
+        }
+
+        .candidate-list {
+          display: none;
+        }
+
+        .stats-stage {
+          grid-template-columns: 1fr;
+          justify-items: center;
+        }
+
+        .bubble {
+          width: min(86vw, 310px);
+        }
+
+        .mission-card {
+          transform: rotate(-2deg);
+        }
+
+        .mission-text {
+          transform: rotate(2deg);
+        }
+
+        .shape-word::before,
+        .shape-word::after {
+          display: none;
+        }
+
+        .history-card {
+          grid-template-columns: 1fr;
+          gap: 18px;
+          text-align: center;
+        }
+
+        .number {
+          justify-self: center;
+        }
+
+        .clients p,
+        .cta p {
+          margin-bottom: 42px;
+        }
+
+        .logo {
+          min-width: 92px;
+          min-height: 48px;
+        }
+
+        .button {
+          width: min(100%, 300px);
+          min-width: 0;
+          min-height: 58px;
+          font-size: 22px;
+        }
       }
     </style>
   </head>
   <body>
-    <main>
-      <h1>Я готов к работе, Аня</h1>
+    <main class="page">
+      <section class="section hero">
+        <div class="container hero-grid">
+          <div>
+            <h1><span class="accent">Современная</span> ATS для эффективного найма</h1>
+            <p>WorkHere объединяет автоматизацию, аналитику и AI, чтобы HR-команды нанимали быстрее и эффективнее.</p>
+          </div>
+
+          <div class="product-wrap" aria-label="Интерфейс WorkHere">
+            <div class="product-card">
+              <div class="app-shell">
+                <aside class="sidebar" aria-hidden="true">
+                  <div class="side-item"><span class="side-dot"></span>Карточки дел</div>
+                  <div class="side-item"><span class="side-dot"></span>Все соискатели</div>
+                  <div class="side-item"><span class="side-dot"></span>Собеседования</div>
+                  <div class="side-item"><span class="side-dot"></span>Вакансии</div>
+                  <div class="side-item"><span class="side-dot"></span>Заявки</div>
+                  <div class="side-item"><span class="side-dot"></span>Отчеты</div>
+                </aside>
+                <div class="app-main">
+                  <div class="app-top"><strong>Home</strong><span>Все</span><span>Приглашены</span><span>Принятые</span></div>
+                  <div class="app-content">
+                    <div class="candidate-list" aria-hidden="true">
+                      <div class="candidate"><strong>Юрченко Юлия</strong><br>140 000 ₽<br>Приглашен на собеседование</div>
+                      <div class="candidate"><strong>Потапчук Мария</strong><br>179 000 ₽<br>Создана вручную</div>
+                      <div class="candidate"><strong>Загорская Светлана</strong><br>165 000 ₽<br>История обновлена</div>
+                      <div class="candidate"><strong>Соколов Иван</strong><br>120 000 ₽<br>Ожидает решения</div>
+                    </div>
+                    <article class="profile">
+                      <div class="profile-hero">
+                        <div>
+                          <div class="avatar" aria-hidden="true"></div>
+                          <strong>Юрченко Юлия</strong><br>
+                          <span>Менеджер по продажам</span>
+                        </div>
+                      </div>
+                      <div class="profile-body" aria-hidden="true">
+                        <div class="status-row"><span class="pill green"></span><span class="pill"></span><span class="pill"></span></div>
+                        <div class="tabs"><span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span></div>
+                        <div class="info-lines"><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span></div>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section stats">
+        <div class="container stats-stage" aria-label="Ключевые показатели WorkHere">
+          <div class="bubble cyan"><div><strong>+3000</strong><span>счастливых клиентов</span></div></div>
+          <div class="bubble yellow"><div><strong>№1</strong><span>* Лучшая ATS<br>система России</span></div></div>
+          <div class="bubble green"><div><strong>7 лет</strong><span>непрерывного<br>развития продукта</span></div></div>
+        </div>
+      </section>
+
+      <section class="section mission">
+        <div class="mission-card">
+          <h2 class="mission-text">Наша миссия - помочь рекрутерам закрывать вакансии быстрее и работать с удовольствием</h2>
+        </div>
+      </section>
+
+      <section class="section history">
+        <div class="container">
+          <h2 class="section-title">Как WorkHere стала той <span class="shape-word">самой идеальной ATS</span>, созданной рекрутерами для рекрутеров</h2>
+
+          <div class="timeline">
+            <article class="history-card blue">
+              <div class="number">1.</div>
+              <div class="history-copy">
+                <h3>Создание продукта<br>2019 г.</h3>
+                <p>Мы начали работать над ATS еще в конце 2020 года. Изначально это был работный сайт.</p>
+              </div>
+            </article>
+
+            <article class="history-card green">
+              <div class="number">2.</div>
+              <div class="history-copy">
+                <h3>Ребрендинг и сбор<br>обратной связи</h3>
+                <p>Затем в начале 2023г. мы добавили раздел HRM. Наши клиенты заинтересовались новым функционалом продукта. Мы начали активно улучшать его, опираясь на ОС от рекрутеров, предоставляя бесплатный доступ к системе для качественного сбора обратной связи.</p>
+              </div>
+            </article>
+
+            <article class="history-card yellow">
+              <div class="number">3.</div>
+              <div class="history-copy">
+                <h3>Выход на платный<br>рынок</h3>
+                <p>В январе 2026г., создав полноценную систему с самым нужным функционалом, созданным на основе запросов рекрутеров, ATS WorkHere вышла на платный рынок.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section clients">
+        <div class="container">
+          <h2>WorkHere выбирают<br>современные HR-команды</h2>
+          <p>Тысячи HR-специалистов ежедневно используют WorkHere для эффективного подбора персонала</p>
+          <div class="logos" aria-label="Клиенты WorkHere">
+            <div class="logo">Якитория</div>
+            <div class="logo soft">MIUZ</div>
+            <div class="logo">PIVALDI</div>
+            <div class="logo badge">HAVAL</div>
+            <div class="logo greenmark">CDEK</div>
+            <div class="logo">Radisson</div>
+            <div class="logo greenmark">EUROSPAR</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section cta">
+        <div class="container">
+          <h2>Нанимайте быстрее<br>Работайте проще</h2>
+          <p>Покажем, как WorkHere автоматизирует подбор, сокращает рутину и помогает рекрутерам нанимать эффективнее</p>
+          <a class="button" href="mailto:hello@workhere.ru">Заказать демо</a>
+        </div>
+      </section>
     </main>
   </body>
 </html>
