@@ -106,10 +106,30 @@
       }
 
       h1 {
-        margin-bottom: 52px;
-        font-size: clamp(48px, 6.8vw, 88px);
-        line-height: 1.12;
+        margin-bottom: 96px;
+        font-size: clamp(44px, 6vw, 76px);
+        line-height: 1.08;
         letter-spacing: -0.055em;
+      }
+
+      .type-title {
+        min-height: 3.3em;
+      }
+
+      .type-title .caret {
+        display: inline-block;
+        width: 0.08em;
+        height: 0.82em;
+        margin-left: 0.08em;
+        background: var(--ink);
+        transform: translateY(0.1em);
+        animation: blink 760ms steps(1) infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
       }
 
       .accent {
@@ -117,10 +137,10 @@
       }
 
       .hero p {
-        max-width: 610px;
+        max-width: 530px;
         margin-bottom: 0;
-        font-size: clamp(22px, 2.05vw, 34px);
-        line-height: 1.28;
+        font-size: clamp(20px, 1.8vw, 28px);
+        line-height: 1.36;
       }
 
       .product-wrap {
@@ -130,26 +150,27 @@
       .product-wrap::before {
         content: "";
         position: absolute;
-        inset: -54px -44px 52px 54px;
+        inset: -56px -48px 56px 58px;
         z-index: 0;
-        border-radius: 28px;
+        border-radius: 40px;
         background: var(--pink);
+        filter: blur(26px);
+        opacity: 0.78;
       }
 
       .product-card {
         position: relative;
         z-index: 1;
         overflow: hidden;
-        border: 1.5px solid var(--ink);
-        border-radius: 24px;
+        border-radius: 7px;
         background: #fff;
-        box-shadow: 0 24px 48px rgba(17, 18, 23, 0.12);
       }
 
       .product-card img {
         display: block;
         width: 100%;
         height: auto;
+        border-radius: 7px;
       }
 
       .app-shell {
@@ -308,8 +329,7 @@
       }
 
       .stats {
-        border-top: 2px solid var(--ink);
-        border-bottom: 1px solid var(--line);
+        border: 0;
       }
 
       .stats-stage {
@@ -403,7 +423,7 @@
       }
 
       .history {
-        border-top: 1px solid var(--line);
+        border: 0;
       }
 
       .section-title {
@@ -676,7 +696,8 @@
         }
 
         .product-wrap::before {
-          inset: -26px -18px 34px 26px;
+          inset: -28px -20px 32px 28px;
+          filter: blur(18px);
         }
 
         .stats-stage {
@@ -708,11 +729,16 @@
         }
 
         h1 {
-          margin-bottom: 28px;
+          margin-bottom: 40px;
+          font-size: clamp(40px, 13vw, 58px);
+        }
+
+        .type-title {
+          min-height: 3.35em;
         }
 
         .product-card {
-          border-radius: 18px;
+          border-radius: 7px;
         }
 
         .app-shell {
@@ -800,7 +826,9 @@
       <section class="section hero">
         <div class="container hero-grid">
           <div>
-            <h1><span class="accent">Современная</span> ATS для эффективного найма</h1>
+            <h1 class="type-title" data-first="Современная" data-rest=" ATS для эффективного найма" aria-label="Современная ATS для эффективного найма">
+              <span class="accent title-first"></span><span class="title-rest"></span><span class="caret" aria-hidden="true"></span>
+            </h1>
             <p>WorkHere объединяет автоматизацию, аналитику и AI, чтобы HR-команды нанимали быстрее и эффективнее.</p>
           </div>
 
@@ -918,5 +946,44 @@
         </div>
       </section>
     </main>
+    <script>
+      (() => {
+        const title = document.querySelector('.type-title');
+        if (!title) return;
+
+        const first = title.querySelector('.title-first');
+        const rest = title.querySelector('.title-rest');
+        const caret = title.querySelector('.caret');
+        const firstText = title.dataset.first || '';
+        const restText = title.dataset.rest || '';
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (reduceMotion) {
+          first.textContent = firstText;
+          rest.textContent = restText;
+          if (caret) caret.style.display = 'none';
+          return;
+        }
+
+        const fullText = firstText + restText;
+        let index = 0;
+
+        const type = () => {
+          index += 1;
+          first.textContent = fullText.slice(0, Math.min(index, firstText.length));
+          rest.textContent = fullText.slice(firstText.length, index);
+
+          if (index < fullText.length) {
+            window.setTimeout(type, 42);
+          } else if (caret) {
+            window.setTimeout(() => {
+              caret.style.display = 'none';
+            }, 900);
+          }
+        };
+
+        window.setTimeout(type, 300);
+      })();
+    </script>
   </body>
 </html>
