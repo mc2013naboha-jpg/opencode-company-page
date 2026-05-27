@@ -345,20 +345,22 @@
         aspect-ratio: 1;
         border-radius: 50%;
         text-align: center;
+        transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: transform;
       }
 
       .bubble strong {
         display: block;
-        font-size: clamp(72px, 8vw, 122px);
+        font-size: clamp(58px, 6.5vw, 98px);
         font-weight: 400;
         line-height: 0.95;
       }
 
       .bubble span {
         display: block;
-        margin-top: 14px;
-        font-size: clamp(22px, 2.2vw, 36px);
-        line-height: 1.08;
+        margin-top: 12px;
+        font-size: clamp(19px, 1.8vw, 30px);
+        line-height: 1.12;
       }
 
       .bubble.cyan {
@@ -368,15 +370,27 @@
       }
 
       .bubble.yellow {
-        left: 39%;
-        top: 135px;
+        left: 33%;
+        top: 124px;
         background: var(--yellow);
       }
 
       .bubble.green {
-        right: 2%;
-        top: 290px;
+        right: 3%;
+        top: 276px;
         background: var(--green);
+      }
+
+      .stats-stage.is-open .bubble.cyan {
+        transform: translateY(34px);
+      }
+
+      .stats-stage.is-open .bubble.yellow {
+        transform: translate(34px, 122px);
+      }
+
+      .stats-stage.is-open .bubble.green {
+        transform: translateY(190px);
       }
 
       .mission {
@@ -710,6 +724,7 @@
         .bubble {
           position: static;
           width: 100%;
+          transform: none !important;
         }
 
         .history-card {
@@ -983,6 +998,24 @@
         };
 
         window.setTimeout(type, 300);
+      })();
+
+      (() => {
+        const stage = document.querySelector('.stats-stage');
+        if (!stage || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            stage.classList.toggle('is-open', entry.isIntersecting);
+          },
+          {
+            root: null,
+            threshold: 0.58,
+            rootMargin: '-16% 0px -28% 0px',
+          }
+        );
+
+        observer.observe(stage);
       })();
     </script>
   </body>
