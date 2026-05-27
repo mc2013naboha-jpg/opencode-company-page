@@ -386,18 +386,21 @@
         left: 6%;
         top: 0;
         background: var(--cyan);
+        z-index: 1;
       }
 
       .bubble.yellow {
         left: 33%;
         top: 124px;
         background: var(--yellow);
+        z-index: 2;
       }
 
       .bubble.green {
-        right: 3%;
+        right: 8%;
         top: 276px;
         background: var(--green);
+        z-index: 1;
       }
 
       .stats-stage.is-open .bubble.cyan {
@@ -405,11 +408,11 @@
       }
 
       .stats-stage.is-open .bubble.yellow {
-        transform: translate(34px, 122px);
+        transform: translate(56px, 122px);
       }
 
       .stats-stage.is-open .bubble.green {
-        transform: translateY(190px);
+        transform: translate(118px, 190px);
       }
 
       .mission {
@@ -1155,7 +1158,8 @@
         const updateStatsState = () => {
           const rect = stage.getBoundingClientRect();
           const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-          const isActive = rect.top < viewportHeight * 0.34 && rect.bottom > viewportHeight * 0.86;
+          const activeLine = viewportHeight * 0.48;
+          const isActive = rect.top < activeLine && rect.bottom > activeLine;
 
           stage.classList.toggle('is-open', isActive);
           ticking = false;
