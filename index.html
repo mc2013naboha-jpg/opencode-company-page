@@ -436,6 +436,57 @@
         text-align: center;
       }
 
+      .mission-photo {
+        position: absolute;
+        z-index: 2;
+        width: clamp(82px, 7.4vw, 118px);
+        aspect-ratio: 1;
+        padding: 0;
+        border: 4px solid rgba(255, 255, 255, 0.96);
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 18px 34px rgba(17, 18, 23, 0.14);
+        overflow: hidden;
+        transform: rotate(4deg);
+      }
+
+      .mission-photo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .mission-photo.photo-1 {
+        left: 4%;
+        top: 16%;
+      }
+
+      .mission-photo.photo-2 {
+        left: 44%;
+        top: -12%;
+      }
+
+      .mission-photo.photo-3 {
+        right: 7%;
+        top: 8%;
+      }
+
+      .mission-photo.photo-4 {
+        left: 5%;
+        bottom: 15%;
+      }
+
+      .mission-photo.photo-5 {
+        left: 48%;
+        bottom: -15%;
+      }
+
+      .mission-photo.photo-6 {
+        right: 4%;
+        bottom: 12%;
+      }
+
       .history {
         border: 0;
       }
@@ -789,10 +840,48 @@
 
         .mission-card {
           transform: rotate(-2deg);
+          padding-top: 120px;
+          padding-bottom: 120px;
         }
 
         .mission-text {
           transform: rotate(2deg);
+        }
+
+        .mission-photo {
+          width: 72px;
+          border-width: 3px;
+          transform: rotate(2deg);
+        }
+
+        .mission-photo.photo-1 {
+          left: 2%;
+          top: 8%;
+        }
+
+        .mission-photo.photo-2 {
+          left: 42%;
+          top: -5%;
+        }
+
+        .mission-photo.photo-3 {
+          right: 2%;
+          top: 10%;
+        }
+
+        .mission-photo.photo-4 {
+          left: 3%;
+          bottom: 6%;
+        }
+
+        .mission-photo.photo-5 {
+          left: 43%;
+          bottom: -8%;
+        }
+
+        .mission-photo.photo-6 {
+          right: 3%;
+          bottom: 7%;
         }
 
         .shape-word::before,
@@ -865,6 +954,12 @@
 
       <section class="section mission">
         <div class="mission-card">
+          <div class="mission-photo photo-1"><img src="1.svg" alt=""></div>
+          <div class="mission-photo photo-2"><img src="2.svg" alt=""></div>
+          <div class="mission-photo photo-3"><img src="3.svg" alt=""></div>
+          <div class="mission-photo photo-4"><img src="4.svg" alt=""></div>
+          <div class="mission-photo photo-5"><img src="5.svg" alt=""></div>
+          <div class="mission-photo photo-6"><img src="6.svg" alt=""></div>
           <h2 class="mission-text">Наша миссия - помочь рекрутерам закрывать вакансии быстрее и работать с удовольствием</h2>
         </div>
       </section>
@@ -1004,18 +1099,26 @@
         const stage = document.querySelector('.stats-stage');
         if (!stage || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            stage.classList.toggle('is-open', entry.isIntersecting);
-          },
-          {
-            root: null,
-            threshold: 0.58,
-            rootMargin: '-16% 0px -28% 0px',
-          }
-        );
+        let ticking = false;
 
-        observer.observe(stage);
+        const updateStatsState = () => {
+          const rect = stage.getBoundingClientRect();
+          const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+          const isActive = rect.top < viewportHeight * 0.34 && rect.bottom > viewportHeight * 0.86;
+
+          stage.classList.toggle('is-open', isActive);
+          ticking = false;
+        };
+
+        const requestUpdate = () => {
+          if (ticking) return;
+          ticking = true;
+          window.requestAnimationFrame(updateStatsState);
+        };
+
+        updateStatsState();
+        window.addEventListener('scroll', requestUpdate, { passive: true });
+        window.addEventListener('resize', requestUpdate);
       })();
     </script>
   </body>
