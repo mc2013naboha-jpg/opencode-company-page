@@ -455,12 +455,13 @@
 
       .history-card {
         display: grid;
-        grid-template-columns: 150px 1fr;
-        gap: clamp(26px, 5vw, 70px);
+        grid-template-columns: 120px minmax(300px, 1fr) minmax(260px, 390px);
+        gap: clamp(24px, 4vw, 58px);
         align-items: center;
         min-height: 290px;
-        padding: clamp(32px, 5vw, 60px) clamp(34px, 7vw, 92px);
+        padding: clamp(32px, 5vw, 58px) clamp(32px, 6vw, 74px);
         border-radius: 24px;
+        text-align: left;
       }
 
       .history-card.blue {
@@ -520,6 +521,50 @@
         margin-bottom: 0;
         font-size: clamp(18px, 1.7vw, 25px);
         line-height: 1.28;
+      }
+
+      .history-visual {
+        justify-self: end;
+        width: min(100%, 360px);
+      }
+
+      .history-visual svg {
+        display: block;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+      }
+
+      .history-visual .ink {
+        fill: none;
+        stroke: #18191f;
+        stroke-width: 9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .history-visual .thin {
+        stroke-width: 6;
+      }
+
+      .history-visual .white {
+        fill: #fffdf8;
+      }
+
+      .history-visual .blue-fill {
+        fill: #71dcea;
+      }
+
+      .history-visual .green-fill {
+        fill: #65df8d;
+      }
+
+      .history-visual .yellow-fill {
+        fill: #ffd340;
+      }
+
+      .history-visual .orange-fill {
+        fill: #ff744d;
       }
 
       .clients {
@@ -645,6 +690,16 @@
           position: static;
           width: 100%;
         }
+
+        .history-card {
+          grid-template-columns: 96px 1fr;
+        }
+
+        .history-visual {
+          grid-column: 2;
+          justify-self: start;
+          width: min(100%, 320px);
+        }
       }
 
       @media (max-width: 720px) {
@@ -707,11 +762,17 @@
         .history-card {
           grid-template-columns: 1fr;
           gap: 18px;
-          text-align: center;
+          text-align: left;
         }
 
         .number {
+          justify-self: start;
+        }
+
+        .history-visual {
+          grid-column: auto;
           justify-self: center;
+          width: min(100%, 280px);
         }
 
         .clients p,
@@ -775,6 +836,17 @@
                 <h3>Создание продукта<br>2019 г.</h3>
                 <p>Мы начали работать над ATS еще в конце 2020 года. Изначально это был работный сайт.</p>
               </div>
+              <div class="history-visual" aria-hidden="true">
+                <svg viewBox="0 0 420 300" role="img">
+                  <rect class="white" x="78" y="96" width="250" height="150" rx="24"></rect>
+                  <path class="blue-fill" d="M96 214h214v34H96z"></path>
+                  <path class="ink" d="M86 214h236M120 104h178c15 0 26 12 26 26v84H94v-84c0-14 12-26 26-26z"></path>
+                  <path class="ink thin" d="M151 151h54M151 179h112M278 156l31 28 52-64"></path>
+                  <path class="ink" d="M148 246h126"></path>
+                  <circle class="yellow-fill" cx="306" cy="72" r="38"></circle>
+                  <path class="ink thin" d="M292 72l13 13 26-32M52 86l-28-22M58 127H24M73 59L58 24"></path>
+                </svg>
+              </div>
             </article>
 
             <article class="history-card green">
@@ -783,6 +855,17 @@
                 <h3>Ребрендинг и сбор<br>обратной связи</h3>
                 <p>Затем в начале 2023г. мы добавили раздел HRM. Наши клиенты заинтересовались новым функционалом продукта. Мы начали активно улучшать его, опираясь на ОС от рекрутеров, предоставляя бесплатный доступ к системе для качественного сбора обратной связи.</p>
               </div>
+              <div class="history-visual" aria-hidden="true">
+                <svg viewBox="0 0 420 300" role="img">
+                  <path class="white" d="M72 82h198c22 0 40 18 40 40v68c0 22-18 40-40 40H153l-66 46 15-46H72c-22 0-40-18-40-40v-68c0-22 18-40 40-40z"></path>
+                  <path class="green-fill" d="M97 117h176v88H97z"></path>
+                  <path class="ink" d="M72 82h198c22 0 40 18 40 40v68c0 22-18 40-40 40H153l-66 46 15-46H72c-22 0-40-18-40-40v-68c0-22 18-40 40-40z"></path>
+                  <path class="ink thin" d="M111 132h118M111 162h146M111 192h86"></path>
+                  <circle class="yellow-fill" cx="325" cy="92" r="42"></circle>
+                  <path class="ink" d="M332 63c31 0 55 24 55 55s-24 55-55 55h-10l-38 27 9-35c-11-10-17-24-17-39 0-35 23-63 56-63z"></path>
+                  <path class="ink thin" d="M315 119l18 17 34-44M55 45l-23-22M88 34V10M350 227l24 25"></path>
+                </svg>
+              </div>
             </article>
 
             <article class="history-card yellow">
@@ -790,6 +873,20 @@
               <div class="history-copy">
                 <h3>Выход на платный<br>рынок</h3>
                 <p>В январе 2026г., создав полноценную систему с самым нужным функционалом, созданным на основе запросов рекрутеров, ATS WorkHere вышла на платный рынок.</p>
+              </div>
+              <div class="history-visual" aria-hidden="true">
+                <svg viewBox="0 0 420 300" role="img">
+                  <rect class="white" x="56" y="82" width="260" height="166" rx="22"></rect>
+                  <path class="ink" d="M56 230V104c0-12 10-22 22-22h216c12 0 22 10 22 22v126"></path>
+                  <path class="ink" d="M38 230h296l-28 34H68z"></path>
+                  <path class="green-fill" d="M100 190h44v40h-44zM166 152h44v78h-44zM232 112h44v118h-44z"></path>
+                  <path class="ink thin" d="M100 190v40M122 164v66M166 152v78M188 132v98M232 112v118M254 94v136M102 168l67-52 64 24 84-86"></path>
+                  <path class="orange-fill" d="M276 50l94 34-63 63-16-43-43-16z"></path>
+                  <path class="ink" d="M276 50l94 34-63 63-16-43-43-16 28-38z"></path>
+                  <path class="ink thin" d="M318 90l-35 36M366 154l31 16M353 188l20 25M232 44l-17-28"></path>
+                  <circle class="yellow-fill" cx="82" cy="68" r="30"></circle>
+                  <path class="ink thin" d="M72 68h20M82 55v26"></path>
+                </svg>
               </div>
             </article>
           </div>
