@@ -1224,7 +1224,6 @@
           return;
         }
 
-        let imagesReady = false;
         let missionInView = false;
 
         const decodeImage = (image) => {
@@ -1241,18 +1240,16 @@
           });
         };
 
-        const imagePromises = missionImages.map(decodeImage);
-
-        Promise.all(imagePromises).then(() => {
-          imagesReady = true;
-          missionImages.forEach((image) => image.closest('.mission-photo')?.classList.add('is-loaded'));
-          mission.classList.toggle('is-visible', missionInView);
+        missionImages.forEach((image) => {
+          decodeImage(image).then(() => {
+            image.closest('.mission-photo')?.classList.add('is-loaded');
+          });
         });
 
         const observer = new IntersectionObserver(
           ([entry]) => {
             missionInView = entry.isIntersecting;
-            mission.classList.toggle('is-visible', imagesReady && missionInView);
+            mission.classList.toggle('is-visible', missionInView);
           },
           {
             threshold: 0.34,
