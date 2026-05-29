@@ -677,6 +677,19 @@
         transform: rotate(4deg) translateY(0) scale(1);
       }
 
+      .mission-mark.mark-6 {
+        right: 6%;
+        bottom: 2%;
+        width: 50px;
+        height: 50px;
+        transform: rotate(12deg) translateY(14px) scale(0.84);
+        transition-delay: 380ms;
+      }
+
+      .mission-card.is-visible .mission-mark.mark-6 {
+        transform: rotate(12deg) translateY(0) scale(1);
+      }
+
       @media (prefers-reduced-motion: reduce) {
         .product-wrap {
           animation: none;
@@ -1211,6 +1224,11 @@
           bottom: -2%;
         }
 
+        .mission-mark.mark-6 {
+          right: 1%;
+          bottom: 3%;
+        }
+
         .shape-word::before,
         .shape-word::after {
           display: none;
@@ -1289,6 +1307,7 @@
           <div class="mission-mark mark-3" aria-hidden="true"><svg viewBox="0 0 58 58"><path d="M9 44L8 20l14 13 8-23 12 23 10-12-2 24"/></svg></div>
           <div class="mission-mark mark-4" aria-hidden="true"><svg viewBox="0 0 48 48"><line x1="14" y1="32" x2="5" y2="42"/><line x1="24" y1="28" x2="21" y2="43"/><line x1="33" y1="27" x2="43" y2="39"/></svg></div>
           <div class="mission-mark mark-5" aria-hidden="true"><svg viewBox="0 0 58 58"><path d="M9 44L8 20l14 13 8-23 12 23 10-12-2 24"/></svg></div>
+          <div class="mission-mark mark-6" aria-hidden="true"><svg viewBox="0 0 58 58"><path d="M29 5c6 16 10 20 24 24-14 5-18 9-24 24-5-15-10-19-24-24 15-5 19-9 24-24z"/></svg></div>
           <div class="mission-photo photo-1"><img src="1.svg" alt="" loading="eager" decoding="async"></div>
           <div class="mission-photo photo-2"><img src="2.svg" alt="" loading="eager" decoding="async"></div>
           <div class="mission-photo photo-3"><img src="3.svg" alt="" loading="eager" decoding="async"></div>
