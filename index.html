@@ -482,7 +482,7 @@
         will-change: opacity, transform;
       }
 
-      .mission-card.is-visible .mission-photo {
+      .mission-card.is-visible .mission-photo.is-loaded {
         opacity: 1;
         transform: rotate(4deg) translateY(0) scale(1);
       }
@@ -916,7 +916,7 @@
           border-width: 3px;
         }
 
-        .mission-card.is-visible .mission-photo {
+        .mission-card.is-visible .mission-photo.is-loaded {
           transform: rotate(2deg) translateY(0) scale(1);
         }
 
@@ -1192,26 +1192,36 @@
         const mission = document.querySelector('.mission-card');
         if (!mission) return;
 
+        const missionImages = Array.from(mission.querySelectorAll('.mission-photo img'));
+
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          missionImages.forEach((image) => image.closest('.mission-photo')?.classList.add('is-loaded'));
           mission.classList.add('is-visible');
           return;
         }
 
-        const missionImages = Array.from(mission.querySelectorAll('.mission-photo img'));
         let imagesReady = false;
         let missionInView = false;
 
-        const imagePromises = missionImages.map((image) => {
-          if (image.complete && image.naturalWidth > 0) return Promise.resolve();
+        const decodeImage = (image) => {
+          const waitForLoad = image.complete && image.naturalWidth > 0
+            ? Promise.resolve()
+            : new Promise((resolve) => {
+                image.addEventListener('load', resolve, { once: true });
+                image.addEventListener('error', resolve, { once: true });
+              });
 
-          return new Promise((resolve) => {
-            image.addEventListener('load', resolve, { once: true });
-            image.addEventListener('error', resolve, { once: true });
+          return waitForLoad.then(() => {
+            if (typeof image.decode !== 'function') return;
+            return image.decode().catch(() => {});
           });
-        });
+        };
+
+        const imagePromises = missionImages.map(decodeImage);
 
         Promise.all(imagePromises).then(() => {
           imagesReady = true;
+          missionImages.forEach((image) => image.closest('.mission-photo')?.classList.add('is-loaded'));
           mission.classList.toggle('is-visible', missionInView);
         });
 
