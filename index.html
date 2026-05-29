@@ -573,19 +573,19 @@
 
       .timeline {
         display: grid;
-        gap: 34px;
-        width: min(100%, 900px);
+        gap: 24px;
+        width: min(100%, 860px);
         margin: 0 auto;
       }
 
       .history-card {
         display: grid;
-        grid-template-columns: 86px minmax(300px, 1fr) 290px;
+        grid-template-columns: minmax(250px, 0.78fr) minmax(360px, 1.22fr);
         gap: 28px;
-        align-items: start;
-        min-height: 190px;
-        padding: 68px 52px;
-        border-radius: 14px;
+        align-items: center;
+        min-height: 300px;
+        padding: 44px 58px 44px 56px;
+        border-radius: 16px;
         text-align: left;
       }
 
@@ -616,11 +616,11 @@
       .number {
         position: relative;
         display: inline-block;
-        font-size: clamp(46px, 5vw, 68px);
+        margin-bottom: 30px;
+        font-size: clamp(54px, 5.2vw, 74px);
         font-weight: 800;
         font-style: italic;
         line-height: 0.8;
-        margin-top: 8px;
       }
 
       .number::after {
@@ -629,7 +629,7 @@
         left: -6px;
         right: -12px;
         bottom: -10px;
-        height: 18px;
+        height: 22px;
         z-index: -1;
         border-radius: 5px;
         background: rgba(0, 0, 0, 0.13);
@@ -648,23 +648,24 @@
       }
 
       .history-copy h3 {
+        max-width: 310px;
         margin-bottom: 18px;
-        font-size: clamp(24px, 2.25vw, 34px);
-        line-height: 1.15;
+        font-size: clamp(26px, 2.35vw, 34px);
+        line-height: 1.08;
         letter-spacing: -0.03em;
       }
 
       .history-copy p {
-        max-width: 360px;
+        max-width: 310px;
         margin-bottom: 0;
-        font-size: clamp(15px, 1.28vw, 18px);
-        line-height: 1.2;
+        font-size: clamp(15px, 1.18vw, 17px);
+        line-height: 1.45;
       }
 
       .history-visual {
         justify-self: end;
         align-self: center;
-        width: min(100%, 265px);
+        width: min(100%, 390px);
       }
 
       .history-visual svg {
@@ -847,13 +848,13 @@
         }
 
         .history-card {
-          grid-template-columns: 70px 1fr;
+          grid-template-columns: minmax(220px, 0.8fr) minmax(280px, 1.2fr);
+          padding: 38px 42px;
         }
 
         .history-visual {
-          grid-column: 2;
           justify-self: start;
-          width: min(100%, 240px);
+          width: min(100%, 310px);
         }
       }
 
@@ -961,7 +962,7 @@
 
         .history-card {
           grid-template-columns: 1fr;
-          gap: 18px;
+          gap: 24px;
           padding: 28px 30px;
           text-align: left;
         }
@@ -973,7 +974,7 @@
         .history-visual {
           grid-column: auto;
           justify-self: center;
-          width: min(100%, 230px);
+          width: min(100%, 290px);
         }
 
         .clients p,
@@ -1040,8 +1041,8 @@
 
           <div class="timeline">
             <article class="history-card blue">
-              <div class="number">1.</div>
               <div class="history-copy">
+                <div class="number">1.</div>
                 <h3>Создание продукта<br>2019 г.</h3>
                 <p>Мы начали работать над ATS еще в конце 2020 года. Изначально это был работный сайт.</p>
               </div>
@@ -1059,8 +1060,8 @@
             </article>
 
             <article class="history-card green">
-              <div class="number">2.</div>
               <div class="history-copy">
+                <div class="number">2.</div>
                 <h3>Ребрендинг и сбор<br>обратной связи</h3>
                 <p>Затем в начале 2023г. мы добавили раздел HRM. Наши клиенты заинтересовались новым функционалом продукта. Мы начали активно улучшать его, опираясь на ОС от рекрутеров, предоставляя бесплатный доступ к системе для качественного сбора обратной связи.</p>
               </div>
@@ -1078,8 +1079,8 @@
             </article>
 
             <article class="history-card yellow">
-              <div class="number">3.</div>
               <div class="history-copy">
+                <div class="number">3.</div>
                 <h3>Выход на платный<br>рынок</h3>
                 <p>В январе 2026г., создав полноценную систему с самым нужным функционалом, созданным на основе запросов рекрутеров, ATS WorkHere вышла на платный рынок.</p>
               </div>
