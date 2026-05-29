@@ -361,6 +361,7 @@
       .stats-stage {
         position: relative;
         min-height: 660px;
+        --progress: 1;
       }
 
       .bubble {
@@ -371,8 +372,7 @@
         aspect-ratio: 1;
         border-radius: 50%;
         text-align: center;
-        transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
-        will-change: transform;
+        will-change: transform, scroll-position;
       }
 
       .bubble strong {
@@ -400,6 +400,7 @@
         left: 33%;
         top: 124px;
         background: var(--yellow);
+        transform: translateY(calc(20% - 20% * var(--progress, 1)));
         z-index: 2;
       }
 
@@ -407,19 +408,8 @@
         right: 8%;
         top: 276px;
         background: var(--green);
+        transform: translateY(calc(40% - 40% * var(--progress, 1)));
         z-index: 1;
-      }
-
-      .stats-stage.is-open .bubble.cyan {
-        transform: translateY(34px);
-      }
-
-      .stats-stage.is-open .bubble.yellow {
-        transform: translate(56px, 122px);
-      }
-
-      .stats-stage.is-open .bubble.green {
-        transform: translate(118px, 190px);
       }
 
       .mission {
@@ -1163,17 +1153,49 @@
 
       (() => {
         const stage = document.querySelector('.stats-stage');
-        if (!stage || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (!stage) return;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          stage.style.setProperty('--progress', '1');
+          return;
+        }
 
         let ticking = false;
+        let current = 1;
+        let target = 1;
+        let rafId = null;
+
+        const clamp = (value) => Math.min(1, Math.max(0, value));
+        const round = (value) => Math.round(value * 10000) / 10000;
+
+        const setProgress = (value) => {
+          stage.style.setProperty('--progress', String(round(value)));
+        };
+
+        const animateProgress = () => {
+          current += (target - current) * 0.12;
+
+          if (Math.abs(target - current) < 0.001) {
+            current = target;
+            setProgress(current);
+            rafId = null;
+            return;
+          }
+
+          setProgress(current);
+          rafId = window.requestAnimationFrame(animateProgress);
+        };
 
         const updateStatsState = () => {
           const rect = stage.getBoundingClientRect();
           const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-          const activeLine = viewportHeight * 0.48;
-          const isActive = rect.top < activeLine && rect.bottom > activeLine;
+          const pageTop = rect.top + window.scrollY;
+          const start = pageTop - viewportHeight / 2;
+          const end = start + viewportHeight - 400;
+          const rawProgress = (window.scrollY - start) / Math.max(1, end - start);
 
-          stage.classList.toggle('is-open', isActive);
+          target = clamp(rawProgress);
+          if (rafId === null) rafId = window.requestAnimationFrame(animateProgress);
           ticking = false;
         };
 
