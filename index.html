@@ -137,7 +137,7 @@
 
       h1 {
         margin-bottom: 0;
-        font-size: clamp(44px, 6vw, 76px);
+        font-size: clamp(40px, 5.3vw, 68px);
         line-height: 1.08;
         letter-spacing: -0.055em;
       }
@@ -150,7 +150,7 @@
         display: inline-block;
         width: 0.08em;
         height: 0.82em;
-        margin-left: 0.08em;
+        margin: 0 0.08em 0 0.06em;
         background: var(--ink);
         transform: translateY(0.1em);
         animation: blink 760ms steps(1) infinite;
@@ -1275,8 +1275,8 @@
       <section class="section hero">
         <div class="container hero-grid">
           <div class="hero-copy">
-            <h1 class="type-title" data-first="Современная" data-rest=" ATS для эффективного найма" aria-label="Современная ATS для эффективного найма">
-              <span class="accent title-first"></span><span class="title-rest"></span><span class="caret" aria-hidden="true"></span>
+            <h1 class="type-title" data-words="Современная,Удобная,Прогрессивная" aria-label="Современная ATS для эффективного найма">
+              <span class="accent title-first">Современная</span><span class="caret" aria-hidden="true"></span><span class="title-rest"> ATS для эффективного найма</span>
             </h1>
             <p>WorkHere объединяет автоматизацию, аналитику и AI, чтобы HR-команды нанимали быстрее и эффективнее.</p>
           </div>
@@ -1422,37 +1422,59 @@
         if (!title) return;
 
         const first = title.querySelector('.title-first');
-        const rest = title.querySelector('.title-rest');
         const caret = title.querySelector('.caret');
-        const firstText = title.dataset.first || '';
-        const restText = title.dataset.rest || '';
+        const rest = title.querySelector('.title-rest');
+        const words = (title.dataset.words || 'Современная')
+          .split(',')
+          .map((word) => word.trim())
+          .filter(Boolean);
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+        if (!first || words.length === 0) return;
+
         if (reduceMotion) {
-          first.textContent = firstText;
-          rest.textContent = restText;
+          first.textContent = words[0];
           if (caret) caret.style.display = 'none';
           return;
         }
 
-        const fullText = firstText + restText;
-        let index = 0;
+        const typeDelay = 76;
+        const eraseDelay = 46;
+        const holdDelay = 2000;
+        let wordIndex = 0;
 
-        const type = () => {
-          index += 1;
-          first.textContent = fullText.slice(0, Math.min(index, firstText.length));
-          rest.textContent = fullText.slice(firstText.length, index);
-
-          if (index < fullText.length) {
-            window.setTimeout(type, 42);
-          } else if (caret) {
-            window.setTimeout(() => {
-              caret.style.display = 'none';
-            }, 900);
-          }
+        const setLabel = () => {
+          title.setAttribute('aria-label', `${first.textContent}${rest?.textContent || ''}`);
         };
 
-        window.setTimeout(type, 300);
+        const typeWord = (word, index = 0) => {
+          first.textContent = word.slice(0, index);
+          setLabel();
+
+          if (index < word.length) {
+            window.setTimeout(() => typeWord(word, index + 1), typeDelay);
+            return;
+          }
+
+          window.setTimeout(() => eraseWord(word), holdDelay);
+        };
+
+        const eraseWord = (word, index = word.length) => {
+          first.textContent = word.slice(0, index);
+          setLabel();
+
+          if (index > 0) {
+            window.setTimeout(() => eraseWord(word, index - 1), eraseDelay);
+            return;
+          }
+
+          wordIndex = (wordIndex + 1) % words.length;
+          window.setTimeout(() => typeWord(words[wordIndex]), typeDelay);
+        };
+
+        first.textContent = words[0];
+        setLabel();
+        window.setTimeout(() => eraseWord(words[0]), holdDelay);
       })();
 
       (() => {
