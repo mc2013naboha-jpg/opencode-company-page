@@ -101,7 +101,14 @@
         display: grid;
         grid-template-columns: minmax(300px, 0.8fr) minmax(420px, 1.2fr);
         gap: clamp(36px, 6vw, 86px);
-        align-items: center;
+        align-items: stretch;
+      }
+
+      .hero-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 100%;
       }
 
       h1,
@@ -112,7 +119,7 @@
       }
 
       h1 {
-        margin-bottom: 96px;
+        margin-bottom: 0;
         font-size: clamp(44px, 6vw, 76px);
         line-height: 1.08;
         letter-spacing: -0.055em;
@@ -809,6 +816,12 @@
 
         .hero-grid {
           grid-template-columns: 1fr;
+          align-items: center;
+        }
+
+        .hero-copy {
+          min-height: auto;
+          gap: 48px;
         }
 
         .product-wrap::before {
@@ -846,7 +859,6 @@
         }
 
         h1 {
-          margin-bottom: 40px;
           font-size: clamp(40px, 13vw, 58px);
         }
 
@@ -983,7 +995,7 @@
     <main class="page">
       <section class="section hero">
         <div class="container hero-grid">
-          <div>
+          <div class="hero-copy">
             <h1 class="type-title" data-first="Современная" data-rest=" ATS для эффективного найма" aria-label="Современная ATS для эффективного найма">
               <span class="accent title-first"></span><span class="title-rest"></span><span class="caret" aria-hidden="true"></span>
             </h1>
