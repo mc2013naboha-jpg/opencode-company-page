@@ -580,9 +580,9 @@
 
       .history-card {
         display: grid;
-        grid-template-columns: 86px minmax(300px, 1fr) 230px;
-        gap: 36px;
-        align-items: center;
+        grid-template-columns: 86px minmax(300px, 1fr) 290px;
+        gap: 28px;
+        align-items: start;
         min-height: 190px;
         padding: 34px 52px;
         border-radius: 14px;
@@ -608,6 +608,7 @@
         font-weight: 800;
         font-style: italic;
         line-height: 0.8;
+        margin-top: 8px;
       }
 
       .number::after {
@@ -650,7 +651,8 @@
 
       .history-visual {
         justify-self: end;
-        width: min(100%, 190px);
+        align-self: center;
+        width: min(100%, 265px);
       }
 
       .history-visual svg {
@@ -839,7 +841,7 @@
         .history-visual {
           grid-column: 2;
           justify-self: start;
-          width: min(100%, 190px);
+          width: min(100%, 240px);
         }
       }
 
@@ -959,7 +961,7 @@
         .history-visual {
           grid-column: auto;
           justify-self: center;
-          width: min(100%, 190px);
+          width: min(100%, 230px);
         }
 
         .clients p,
