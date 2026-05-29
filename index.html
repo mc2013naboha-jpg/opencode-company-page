@@ -70,105 +70,6 @@
         overflow: hidden;
       }
 
-      .decor-layer {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        z-index: 0;
-        overflow: hidden;
-      }
-
-      .decor {
-        position: absolute;
-        z-index: 0;
-        pointer-events: none;
-      }
-
-      .decor svg {
-        display: block;
-        width: 100%;
-        height: 100%;
-        overflow: visible;
-      }
-
-      .decor path,
-      .decor line,
-      .decor polyline {
-        fill: none;
-        stroke: #1d1d1f;
-        stroke-width: 5;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-
-      .decor-curve-low {
-        top: 3380px;
-        right: -90px;
-        width: 410px;
-        height: 320px;
-        opacity: 0.8;
-      }
-
-      .decor-plus {
-        width: 54px;
-        height: 54px;
-      }
-
-      .decor-plus::before,
-      .decor-plus::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 34px;
-        height: 5px;
-        border-radius: 999px;
-        background: #1d1d1f;
-        transform: translate(-50%, -50%);
-      }
-
-      .decor-plus::after {
-        transform: translate(-50%, -50%) rotate(90deg);
-      }
-
-      .decor-plus-3 {
-        top: 2060px;
-        right: 16%;
-        transform: scale(0.8) rotate(14deg);
-      }
-
-      .decor-plus-4 {
-        top: 4300px;
-        left: 10%;
-        transform: scale(0.72) rotate(-8deg);
-      }
-
-      .decor-star {
-        width: 74px;
-        height: 74px;
-      }
-
-      .decor-star path {
-        stroke-width: 6;
-      }
-
-      .decor-star-2 {
-        top: 2920px;
-        right: 12%;
-        transform: scale(0.8) rotate(12deg);
-      }
-
-      .decor-blob {
-        width: 76px;
-        height: 76px;
-      }
-
-      .decor-blob svg path {
-        fill: #ff704a;
-        stroke: #1d1d1f;
-        stroke-width: 5;
-      }
-
       .section,
       .container {
         position: relative;
@@ -182,6 +83,29 @@
       .container {
         width: min(100%, 1320px);
         margin: 0 auto;
+      }
+
+      .section-doodle {
+        position: absolute;
+        z-index: 3;
+        pointer-events: none;
+      }
+
+      .section-doodle svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+
+      .section-doodle path,
+      .section-doodle line,
+      .section-doodle polyline {
+        fill: none;
+        stroke: #1d1d1f;
+        stroke-width: 5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
       }
 
       .hero {
@@ -252,6 +176,14 @@
       .product-wrap {
         position: relative;
         animation: heroVisualIn 900ms ease-out 220ms both;
+      }
+
+      .hero-doodle {
+        right: -18px;
+        bottom: -34px;
+        width: 54px;
+        height: 54px;
+        transform: rotate(8deg);
       }
 
       @keyframes heroVisualIn {
@@ -797,10 +729,27 @@
       }
 
       .timeline {
+        position: relative;
         display: grid;
         gap: 24px;
         width: min(100%, 860px);
         margin: 0 auto;
+      }
+
+      .history-doodle-zigzag {
+        top: -40px;
+        left: -82px;
+        width: 58px;
+        height: 58px;
+        transform: rotate(-8deg);
+      }
+
+      .history-doodle-rays {
+        right: -86px;
+        bottom: 30%;
+        width: 54px;
+        height: 54px;
+        transform: rotate(12deg);
       }
 
       .history-card {
@@ -936,6 +885,22 @@
         text-align: center;
       }
 
+      .clients-doodle-star {
+        top: -12px;
+        left: 12%;
+        width: 58px;
+        height: 58px;
+        transform: rotate(-14deg);
+      }
+
+      .clients-doodle-plus {
+        right: 13%;
+        bottom: -20px;
+        width: 46px;
+        height: 46px;
+        transform: rotate(8deg);
+      }
+
       .clients h2,
       .cta h2 {
         margin-bottom: 28px;
@@ -1010,6 +975,22 @@
         text-align: center;
       }
 
+      .cta-doodle-check {
+        top: 38px;
+        right: 19%;
+        width: 68px;
+        height: 68px;
+        transform: rotate(6deg);
+      }
+
+      .cta-doodle-lines {
+        left: 18%;
+        bottom: 34px;
+        width: 54px;
+        height: 54px;
+        transform: rotate(-10deg);
+      }
+
       .cta h2 {
         margin-bottom: 28px;
       }
@@ -1040,15 +1021,8 @@
       }
 
       @media (max-width: 1000px) {
-        .decor-curve-low {
+        .section-doodle {
           display: none;
-        }
-
-        .decor-plus,
-        .decor-star,
-        .decor-blob {
-          opacity: 0.55;
-          transform: scale(0.72);
         }
 
         .hero {
@@ -1272,12 +1246,6 @@
   </head>
   <body>
     <main class="page">
-        <div class="decor-layer" aria-hidden="true">
-          <div class="decor decor-curve-low"><svg viewBox="0 0 410 320"><path d="M400 72c-92-72-222-68-296 10-58 62-58 150 12 174"/><path d="M142 288c74-4 132-42 162-108"/></svg></div>
-        <div class="decor decor-plus decor-plus-3"></div>
-        <div class="decor decor-plus decor-plus-4"></div>
-          <div class="decor decor-star decor-star-2"><svg viewBox="0 0 74 74"><path d="M37 4c7 20 13 26 33 33-20 7-26 13-33 33-7-20-13-26-33-33 20-7 26-13 33-33z"/></svg></div>
-        </div>
       <section class="section hero">
         <div class="container hero-grid">
           <div class="hero-copy">
@@ -1291,6 +1259,7 @@
             <div class="product-card">
               <img src="визуал.jpg" alt="Интерфейс WorkHere с карточкой кандидата" loading="eager" decoding="async" fetchpriority="high">
             </div>
+            <div class="section-doodle hero-doodle" aria-hidden="true"><svg viewBox="0 0 56 56"><line x1="28" y1="8" x2="28" y2="20"/><line x1="28" y1="36" x2="28" y2="48"/><line x1="8" y1="28" x2="20" y2="28"/><line x1="36" y1="28" x2="48" y2="28"/></svg></div>
           </div>
         </div>
       </section>
@@ -1327,6 +1296,8 @@
           <h2 class="section-title">Как WorkHere стала той <span class="shape-word">самой идеальной ATS</span>, созданной рекрутерами для рекрутеров</h2>
 
           <div class="timeline">
+            <div class="section-doodle history-doodle-zigzag" aria-hidden="true"><svg viewBox="0 0 58 58"><path d="M9 42l1-24 14 14 7-22 12 22 8-12-1 25"/></svg></div>
+            <div class="section-doodle history-doodle-rays" aria-hidden="true"><svg viewBox="0 0 54 54"><line x1="12" y1="36" x2="4" y2="45"/><line x1="26" y1="31" x2="26" y2="48"/><line x1="38" y1="35" x2="49" y2="45"/></svg></div>
             <article class="history-card blue">
               <div class="history-copy">
                 <div class="number">1.</div>
@@ -1392,6 +1363,8 @@
 
       <section class="section clients">
         <div class="container">
+          <div class="section-doodle clients-doodle-star" aria-hidden="true"><svg viewBox="0 0 58 58"><path d="M29 5c6 16 10 20 24 24-14 5-18 9-24 24-5-15-10-19-24-24 15-5 19-9 24-24z"/></svg></div>
+          <div class="section-doodle clients-doodle-plus" aria-hidden="true"><svg viewBox="0 0 46 46"><line x1="23" y1="7" x2="23" y2="18"/><line x1="23" y1="28" x2="23" y2="39"/><line x1="7" y1="23" x2="18" y2="23"/><line x1="28" y1="23" x2="39" y2="23"/></svg></div>
           <h2>WorkHere выбирают<br>современные HR-команды</h2>
           <p>Тысячи HR-специалистов ежедневно используют WorkHere для эффективного подбора персонала</p>
           <div class="logos" aria-label="Клиенты WorkHere">
@@ -1408,6 +1381,8 @@
 
       <section class="section cta">
         <div class="container">
+          <div class="section-doodle cta-doodle-check" aria-hidden="true"><svg viewBox="0 0 68 68"><path d="M12 36l16 15 30-38"/><path d="M8 12c16-7 36-6 48 7 11 12 10 31-2 42"/></svg></div>
+          <div class="section-doodle cta-doodle-lines" aria-hidden="true"><svg viewBox="0 0 54 54"><line x1="12" y1="38" x2="4" y2="46"/><line x1="25" y1="32" x2="25" y2="48"/><line x1="37" y1="36" x2="49" y2="46"/></svg></div>
           <h2>Нанимайте быстрее<br>Работайте проще</h2>
           <p>Покажем, как WorkHere автоматизирует подбор, сокращает рутину и помогает рекрутерам нанимать эффективнее</p>
           <a class="button" href="mailto:hello@workhere.ru">Заказать демо</a>
