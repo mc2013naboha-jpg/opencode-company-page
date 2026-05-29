@@ -128,14 +128,6 @@
         height: 300px;
       }
 
-      .decor-curve-mid {
-        top: 1550px;
-        left: -80px;
-        width: 360px;
-        height: 260px;
-        opacity: 0.85;
-      }
-
       .decor-curve-low {
         top: 3380px;
         right: -90px;
@@ -223,12 +215,6 @@
         top: 370px;
         left: 47%;
         transform: rotate(-12deg);
-      }
-
-      .decor-blob-2 {
-        top: 2500px;
-        left: 12%;
-        transform: scale(0.8) rotate(18deg);
       }
 
       .section,
@@ -567,6 +553,44 @@
         z-index: 1;
       }
 
+      .stats-doodle {
+        position: absolute;
+        z-index: 3;
+        pointer-events: none;
+      }
+
+      .stats-doodle svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+
+      .stats-doodle path,
+      .stats-doodle line {
+        fill: none;
+        stroke: #1d1d1f;
+        stroke-width: 6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .stats-doodle-star {
+        left: 18%;
+        top: 46px;
+        width: 70px;
+        height: 70px;
+        transform: rotate(-10deg);
+      }
+
+      .stats-doodle-plus {
+        right: 19%;
+        top: 184px;
+        width: 56px;
+        height: 56px;
+        transform: rotate(5deg);
+      }
+
       .mission {
         position: relative;
         padding-top: clamp(110px, 14vw, 190px);
@@ -669,13 +693,107 @@
         bottom: 12%;
       }
 
+      .mission-mark {
+        position: absolute;
+        z-index: 3;
+        width: 58px;
+        height: 58px;
+        pointer-events: none;
+        opacity: 0;
+        transform: rotate(4deg) translateY(14px) scale(0.84);
+        transition: opacity 520ms ease, transform 660ms cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
+      }
+
+      .mission-mark svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+
+      .mission-mark path,
+      .mission-mark line {
+        fill: none;
+        stroke: #1d1d1f;
+        stroke-width: 5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .mission-card.is-visible .mission-mark {
+        opacity: 1;
+        transform: rotate(4deg) translateY(0) scale(1);
+      }
+
+      .mission-mark.mark-1 {
+        left: 9%;
+        top: 5%;
+        transform: rotate(-12deg) translateY(14px) scale(0.84);
+        transition-delay: 80ms;
+      }
+
+      .mission-card.is-visible .mission-mark.mark-1 {
+        transform: rotate(-12deg) translateY(0) scale(1);
+      }
+
+      .mission-mark.mark-2 {
+        left: 39%;
+        top: -19%;
+        width: 48px;
+        height: 48px;
+        transform: rotate(8deg) translateY(14px) scale(0.84);
+        transition-delay: 140ms;
+      }
+
+      .mission-card.is-visible .mission-mark.mark-2 {
+        transform: rotate(8deg) translateY(0) scale(1);
+      }
+
+      .mission-mark.mark-3 {
+        right: 3%;
+        top: -2%;
+        transform: rotate(10deg) translateY(14px) scale(0.84);
+        transition-delay: 200ms;
+      }
+
+      .mission-card.is-visible .mission-mark.mark-3 {
+        transform: rotate(10deg) translateY(0) scale(1);
+      }
+
+      .mission-mark.mark-4 {
+        left: 2%;
+        bottom: 32%;
+        width: 50px;
+        height: 50px;
+        transform: rotate(-18deg) translateY(14px) scale(0.84);
+        transition-delay: 260ms;
+      }
+
+      .mission-card.is-visible .mission-mark.mark-4 {
+        transform: rotate(-18deg) translateY(0) scale(1);
+      }
+
+      .mission-mark.mark-5 {
+        left: 45%;
+        bottom: -5%;
+        transform: rotate(4deg) translateY(14px) scale(0.84);
+        transition-delay: 320ms;
+      }
+
+      .mission-card.is-visible .mission-mark.mark-5 {
+        transform: rotate(4deg) translateY(0) scale(1);
+      }
+
       @media (prefers-reduced-motion: reduce) {
         .product-wrap {
           animation: none;
         }
 
         .mission-photo,
-        .mission-card.is-visible .mission-photo {
+        .mission-mark,
+        .mission-card.is-visible .mission-photo,
+        .mission-card.is-visible .mission-mark {
           opacity: 1;
           transform: rotate(4deg);
           transition: none;
@@ -1011,6 +1129,10 @@
           gap: 20px;
         }
 
+        .stats-doodle {
+          display: none;
+        }
+
         .bubble {
           position: static;
           width: 100%;
@@ -1095,6 +1217,10 @@
           transform: rotate(2deg) translateY(0) scale(1);
         }
 
+        .mission-card.is-visible .mission-mark {
+          transform: rotate(2deg) translateY(0) scale(0.78);
+        }
+
         .mission-photo.photo-1 {
           left: 2%;
           top: 8%;
@@ -1123,6 +1249,36 @@
         .mission-photo.photo-6 {
           right: 3%;
           bottom: 7%;
+        }
+
+        .mission-mark {
+          width: 42px;
+          height: 42px;
+        }
+
+        .mission-mark.mark-1 {
+          left: 5%;
+          top: 2%;
+        }
+
+        .mission-mark.mark-2 {
+          left: 35%;
+          top: -8%;
+        }
+
+        .mission-mark.mark-3 {
+          right: 0;
+          top: 3%;
+        }
+
+        .mission-mark.mark-4 {
+          left: 0;
+          bottom: 20%;
+        }
+
+        .mission-mark.mark-5 {
+          left: 39%;
+          bottom: -2%;
         }
 
         .shape-word::before,
@@ -1168,22 +1324,20 @@
   </head>
   <body>
     <main class="page">
-      <div class="decor-layer" aria-hidden="true">
-        <div class="decor decor-curve-left-1"><svg viewBox="0 0 360 360"><path d="M340 82C230 18 95 48 58 150c-32 88 24 190 118 214"/></svg></div>
-        <div class="decor decor-curve-left-2"><svg viewBox="0 0 460 250"><path d="M8 228C42 124 156 62 256 84c71 16 115 72 91 114-34 58-154-2-180-94"/></svg></div>
-        <div class="decor decor-curve-right-1"><svg viewBox="0 0 440 310"><path d="M124 6c54 122-16 238-138 254"/><path d="M82 138c78-54 184 6 210 112 16 65-2 118-48 154"/></svg></div>
-        <div class="decor decor-curve-right-2"><svg viewBox="0 0 330 300"><path d="M12 228c78 38 174 18 226-52 58-78 14-186-70-164-78 20-80 154 24 190"/></svg></div>
-        <div class="decor decor-curve-mid"><svg viewBox="0 0 360 260"><path d="M10 224C64 72 205 32 322 94"/><path d="M102 28c-44 84-8 176 84 198"/></svg></div>
-        <div class="decor decor-curve-low"><svg viewBox="0 0 410 320"><path d="M400 72c-92-72-222-68-296 10-58 62-58 150 12 174"/><path d="M142 288c74-4 132-42 162-108"/></svg></div>
+        <div class="decor-layer" aria-hidden="true">
+          <div class="decor decor-curve-left-1"><svg viewBox="0 0 360 360"><path d="M340 82C230 18 95 48 58 150c-32 88 24 190 118 214"/></svg></div>
+          <div class="decor decor-curve-left-2"><svg viewBox="0 0 460 250"><path d="M8 228C42 124 156 62 256 84c71 16 115 72 91 114-34 58-154-2-180-94"/></svg></div>
+          <div class="decor decor-curve-right-1"><svg viewBox="0 0 440 310"><path d="M124 6c54 122-16 238-138 254"/><path d="M82 138c78-54 184 6 210 112 16 65-2 118-48 154"/></svg></div>
+          <div class="decor decor-curve-right-2"><svg viewBox="0 0 330 300"><path d="M12 228c78 38 174 18 226-52 58-78 14-186-70-164-78 20-80 154 24 190"/></svg></div>
+          <div class="decor decor-curve-low"><svg viewBox="0 0 410 320"><path d="M400 72c-92-72-222-68-296 10-58 62-58 150 12 174"/><path d="M142 288c74-4 132-42 162-108"/></svg></div>
         <div class="decor decor-plus decor-plus-1"></div>
         <div class="decor decor-plus decor-plus-2"></div>
         <div class="decor decor-plus decor-plus-3"></div>
         <div class="decor decor-plus decor-plus-4"></div>
-        <div class="decor decor-star decor-star-1"><svg viewBox="0 0 74 74"><path d="M37 4c7 20 13 26 33 33-20 7-26 13-33 33-7-20-13-26-33-33 20-7 26-13 33-33z"/></svg></div>
-        <div class="decor decor-star decor-star-2"><svg viewBox="0 0 74 74"><path d="M37 4c7 20 13 26 33 33-20 7-26 13-33 33-7-20-13-26-33-33 20-7 26-13 33-33z"/></svg></div>
-        <div class="decor decor-blob decor-blob-1"><svg viewBox="0 0 80 80"><path d="M38 6c19 0 34 16 34 34 0 20-24 31-35 35C26 66 8 55 8 38 8 20 20 6 38 6z"/></svg></div>
-        <div class="decor decor-blob decor-blob-2"><svg viewBox="0 0 80 80"><path d="M38 6c19 0 34 16 34 34 0 20-24 31-35 35C26 66 8 55 8 38 8 20 20 6 38 6z"/></svg></div>
-      </div>
+          <div class="decor decor-star decor-star-1"><svg viewBox="0 0 74 74"><path d="M37 4c7 20 13 26 33 33-20 7-26 13-33 33-7-20-13-26-33-33 20-7 26-13 33-33z"/></svg></div>
+          <div class="decor decor-star decor-star-2"><svg viewBox="0 0 74 74"><path d="M37 4c7 20 13 26 33 33-20 7-26 13-33 33-7-20-13-26-33-33 20-7 26-13 33-33z"/></svg></div>
+          <div class="decor decor-blob decor-blob-1"><svg viewBox="0 0 80 80"><path d="M38 6c19 0 34 16 34 34 0 20-24 31-35 35C26 66 8 55 8 38 8 20 20 6 38 6z"/></svg></div>
+        </div>
       <section class="section hero">
         <div class="container hero-grid">
           <div class="hero-copy">
@@ -1203,6 +1357,8 @@
 
       <section class="section stats">
         <div class="container stats-stage" aria-label="Ключевые показатели WorkHere">
+          <div class="stats-doodle stats-doodle-star" aria-hidden="true"><svg viewBox="0 0 74 74"><path d="M37 5c7 20 13 26 32 32-19 7-25 13-32 32C30 50 24 44 5 37 24 30 30 24 37 5z"/></svg></div>
+          <div class="stats-doodle stats-doodle-plus" aria-hidden="true"><svg viewBox="0 0 56 56"><line x1="28" y1="8" x2="28" y2="22"/><line x1="28" y1="34" x2="28" y2="48"/><line x1="8" y1="28" x2="22" y2="28"/><line x1="34" y1="28" x2="48" y2="28"/></svg></div>
           <div class="bubble cyan"><div><strong>+3000</strong><span>счастливых клиентов</span></div></div>
           <div class="bubble yellow"><div><strong>№1</strong><span>* Лучшая ATS<br>система России</span></div></div>
           <div class="bubble green"><div><strong>7 лет</strong><span>непрерывного<br>развития продукта</span></div></div>
@@ -1211,6 +1367,11 @@
 
       <section class="section mission">
         <div class="mission-card">
+          <div class="mission-mark mark-1" aria-hidden="true"><svg viewBox="0 0 58 58"><path d="M9 44L8 20l14 13 8-23 12 23 10-12-2 24"/></svg></div>
+          <div class="mission-mark mark-2" aria-hidden="true"><svg viewBox="0 0 48 48"><line x1="14" y1="32" x2="5" y2="42"/><line x1="24" y1="28" x2="21" y2="43"/><line x1="33" y1="27" x2="43" y2="39"/></svg></div>
+          <div class="mission-mark mark-3" aria-hidden="true"><svg viewBox="0 0 58 58"><path d="M9 44L8 20l14 13 8-23 12 23 10-12-2 24"/></svg></div>
+          <div class="mission-mark mark-4" aria-hidden="true"><svg viewBox="0 0 48 48"><line x1="14" y1="32" x2="5" y2="42"/><line x1="24" y1="28" x2="21" y2="43"/><line x1="33" y1="27" x2="43" y2="39"/></svg></div>
+          <div class="mission-mark mark-5" aria-hidden="true"><svg viewBox="0 0 58 58"><path d="M9 44L8 20l14 13 8-23 12 23 10-12-2 24"/></svg></div>
           <div class="mission-photo photo-1"><img src="1.svg" alt="" loading="eager" decoding="async"></div>
           <div class="mission-photo photo-2"><img src="2.svg" alt="" loading="eager" decoding="async"></div>
           <div class="mission-photo photo-3"><img src="3.svg" alt="" loading="eager" decoding="async"></div>
