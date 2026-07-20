@@ -680,7 +680,7 @@
       .number {
         position: relative;
         display: inline-block;
-        margin-bottom: 30px;
+        margin-bottom: 0;
         font-size: clamp(54px, 5.2vw, 74px);
         font-weight: 800;
         font-style: italic;
@@ -690,25 +690,41 @@
       .number::after {
         content: "";
         position: absolute;
-        left: -6px;
-        right: -12px;
-        bottom: -10px;
-        height: 22px;
+        left: -10px;
+        right: -18px;
+        bottom: -12px;
+        height: 24px;
         z-index: -1;
-        border-radius: 5px;
+        border-radius: 999px 70% 999px 62%;
         background: rgba(0, 0, 0, 0.13);
+        opacity: 0.95;
+        transform: rotate(-2deg);
       }
 
       .history-card.blue .number::after {
-        background: #71dcea;
+        background: #31ddea;
       }
 
       .history-card.green .number::after {
-        background: #65df8d;
+        background: #29e870;
       }
 
       .history-card.yellow .number::after {
-        background: #ffd340;
+        background: #ffcf21;
+      }
+
+      .history-meta {
+        display: flex;
+        align-items: flex-end;
+        gap: 28px;
+        margin-bottom: 30px;
+      }
+
+      .history-date {
+        font-size: clamp(26px, 2.35vw, 34px);
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.03em;
       }
 
       .history-copy h3 {
@@ -1099,7 +1115,16 @@
         }
 
         .number {
-          margin-bottom: 22px;
+          margin-bottom: 0;
+        }
+
+        .history-meta {
+          gap: 22px;
+          margin-bottom: 24px;
+        }
+
+        .history-date {
+          font-size: clamp(24px, 6.2vw, 31px);
         }
 
         .history-copy h3,
@@ -1347,6 +1372,15 @@
           font-size: 52px;
         }
 
+        .history-meta {
+          gap: 18px;
+          margin-bottom: 22px;
+        }
+
+        .history-date {
+          font-size: 25px;
+        }
+
         .history-copy h3 {
           font-size: 25px;
         }
@@ -1434,8 +1468,11 @@
             <div class="section-doodle history-doodle-rays" aria-hidden="true"><svg viewBox="0 0 54 54"><line x1="12" y1="36" x2="4" y2="45"/><line x1="26" y1="31" x2="26" y2="48"/><line x1="38" y1="35" x2="49" y2="45"/></svg></div>
             <article class="history-card blue">
               <div class="history-copy">
-                <div class="number">1.</div>
-                <h3>Создание продукта<br>2019–2020 гг.</h3>
+                <div class="history-meta">
+                  <div class="number">1.</div>
+                  <div class="history-date">2019–2020 гг.</div>
+                </div>
+                <h3>Создание продукта</h3>
                 <p>С 2017 года наш холдинг разрабатывает технологические решения для бизнеса. Одним из ключевых направлений стала CRM-система для продаж, которая помогла нам глубоко изучить процессы автоматизации. Накопленный опыт стал основой для развития нового продукта.</p>
               </div>
               <div class="history-visual" aria-hidden="true">
@@ -1445,8 +1482,11 @@
 
             <article class="history-card green">
               <div class="history-copy">
-                <div class="number">2.</div>
-                <h3>Развитие продукта и сбор<br>обратной связи<br>2023 г.</h3>
+                <div class="history-meta">
+                  <div class="number">2.</div>
+                  <div class="history-date">2023 г.</div>
+                </div>
+                <h3>Развитие продукта и сбор<br>обратной связи</h3>
                 <p>В 2022 году мы применили накопленную экспертизу в сфере HR-tech и создали ATS WorkHere — платформу, разработанную с учетом реальных задач рекрутеров и бизнеса. Мы активно совершенствовали продукт, предоставляя бесплатный доступ и внедряя улучшения на основе обратной связи от рекрутеров.</p>
               </div>
               <div class="history-visual" aria-hidden="true">
@@ -1456,8 +1496,11 @@
 
             <article class="history-card yellow">
               <div class="history-copy">
-                <div class="number">3.</div>
-                <h3>Выход на платный рынок лучшей ATS в России*<br>2026 г.</h3>
+                <div class="history-meta">
+                  <div class="number">3.</div>
+                  <div class="history-date">2026 г.</div>
+                </div>
+                <h3>Выход на платный рынок лучшей ATS в России*</h3>
                 <p>В январе 2026 года WorkHere вышла на платный рынок. К этому моменту система объединила ключевые инструменты для рекрутинга и HR-процессов, созданные с учетом реальных задач и пожеланий специалистов по подбору персонала.</p>
               </div>
               <div class="history-visual" aria-hidden="true">
