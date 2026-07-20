@@ -899,6 +899,19 @@
         margin-bottom: 46px;
       }
 
+      .page-footnote {
+        padding-top: 0;
+        text-align: center;
+      }
+
+      .page-footnote p {
+        max-width: 960px;
+        margin: 0 auto;
+        color: var(--muted);
+        font-size: clamp(22px, 2.2vw, 34px);
+        line-height: 1.25;
+      }
+
       .button {
         display: inline-flex;
         align-items: center;
@@ -1119,7 +1132,8 @@
         }
 
         .clients p,
-        .cta p {
+        .cta p,
+        .page-footnote p {
           font-size: clamp(19px, 4.9vw, 25px);
         }
       }
@@ -1481,6 +1495,12 @@
           <a class="button" href="mailto:hello@workhere.ru">Заказать демо</a>
         </div>
       </section>
+
+      <footer class="section page-footnote">
+        <div class="container">
+          <p>* Утверждение „Лучшая“ основано на внутреннем исследовании и сравнении количества отзывов с оценкой 4 и 5 звезд в сервисе Яндекс (Яндекс Карты / Яндекс Бизнес) среди систем представленных на российском рынке, по состоянию на 31 января 2026 г.</p>
+        </div>
+      </footer>
     </main>
     <script>
       (() => {
