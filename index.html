@@ -680,7 +680,9 @@
       .number {
         position: relative;
         display: inline-block;
+        isolation: isolate;
         margin-bottom: 0;
+        padding: 0 12px 8px 6px;
         font-size: clamp(54px, 5.2vw, 74px);
         font-weight: 800;
         font-style: italic;
@@ -690,15 +692,15 @@
       .number::after {
         content: "";
         position: absolute;
-        left: -14px;
-        right: -22px;
-        bottom: -14px;
-        height: 28px;
+        left: -6px;
+        right: -10px;
+        bottom: -2px;
+        height: 34px;
         z-index: -1;
-        border-radius: 58% 42% 52% 48% / 62% 50% 54% 42%;
+        border-radius: 64% 36% 58% 42% / 54% 48% 58% 46%;
         background: #E4E0FF;
         opacity: 1;
-        transform: rotate(-3deg) skewX(-7deg);
+        transform: rotate(-4deg) skewX(-9deg);
       }
 
       .history-meta {
