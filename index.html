@@ -1130,8 +1130,161 @@
         margin-bottom: 46px;
       }
 
+      .site-footer {
+        position: relative;
+        z-index: 1;
+        padding: clamp(28px, 4vw, 58px) clamp(18px, 3vw, 48px) clamp(24px, 3vw, 44px);
+        background: #eef1f7;
+      }
+
+      .footer-panel {
+        padding: clamp(38px, 5vw, 72px);
+        border-radius: clamp(34px, 4vw, 58px);
+        background: #fff;
+      }
+
+      .footer-brand {
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: clamp(50px, 6vw, 82px);
+        color: var(--ink);
+        font-size: clamp(28px, 2.5vw, 38px);
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.045em;
+        text-decoration: none;
+      }
+
+      .footer-brand-work {
+        padding: 11px 9px 10px;
+        background: var(--blue);
+        color: #fff;
+      }
+
+      .footer-brand-here {
+        padding-left: 5px;
+      }
+
+      .footer-columns {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(48px, 8vw, 120px);
+      }
+
+      .footer-column {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(52px, 6vw, 78px);
+        min-width: 0;
+      }
+
+      .footer-group h3 {
+        margin-bottom: 24px;
+        font-size: clamp(20px, 1.65vw, 26px);
+        line-height: 1.15;
+        letter-spacing: -0.025em;
+      }
+
+      .footer-list {
+        display: grid;
+        gap: 18px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .footer-link,
+      .footer-contact {
+        display: inline-block;
+        color: var(--ink);
+        font-size: clamp(17px, 1.35vw, 22px);
+        line-height: 1.35;
+        text-decoration: none;
+        text-underline-offset: 5px;
+      }
+
+      .footer-link:hover,
+      .footer-contact:hover,
+      .footer-bottom a:hover {
+        text-decoration: underline;
+      }
+
+      .footer-link:focus-visible,
+      .footer-contact:focus-visible,
+      .footer-brand:focus-visible,
+      .footer-social:focus-visible,
+      .footer-bottom a:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 4px;
+      }
+
+      .footer-socials {
+        display: flex;
+        gap: 12px;
+      }
+
+      .footer-social {
+        display: grid;
+        place-items: center;
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+        color: #fff;
+        text-decoration: none;
+        transition: transform 180ms ease;
+      }
+
+      .footer-social:hover {
+        transform: translateY(-2px);
+      }
+
+      .footer-social svg {
+        width: 34px;
+        height: 34px;
+      }
+
+      .footer-social path,
+      .footer-social circle {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 3;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .footer-social.dzen {
+        background: linear-gradient(135deg, #40a7ff, #742ee8);
+      }
+
+      .footer-social.telegram {
+        background: #27a7e7;
+      }
+
+      .footer-social.vk {
+        background: #087cff;
+      }
+
+      .footer-bottom {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 30px;
+        margin-top: clamp(54px, 7vw, 88px);
+        font-size: clamp(15px, 1.2vw, 19px);
+        line-height: 1.35;
+      }
+
+      .footer-bottom p {
+        margin: 0;
+      }
+
+      .footer-bottom a {
+        color: var(--ink);
+        text-underline-offset: 5px;
+      }
+
       .page-footnote {
-        padding-top: 0;
+        padding: 28px 20px 0;
         text-align: center;
       }
 
@@ -1441,6 +1594,26 @@
         .page-footnote p {
           font-size: clamp(13px, 3.2vw, 16px);
         }
+
+        .footer-panel {
+          padding: 42px 34px;
+        }
+
+        .footer-columns {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 54px 42px;
+        }
+
+        .footer-column {
+          gap: 48px;
+        }
+
+        .footer-column:last-child {
+          grid-column: 1 / -1;
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 42px;
+        }
       }
 
       @media (max-width: 720px) {
@@ -1717,6 +1890,60 @@
           min-height: 56px;
           font-size: 21px;
         }
+
+        .site-footer {
+          padding: 18px 12px 24px;
+        }
+
+        .footer-panel {
+          padding: 36px 24px;
+          border-radius: 32px;
+        }
+
+        .footer-brand {
+          margin-bottom: 46px;
+          font-size: 29px;
+        }
+
+        .footer-columns {
+          grid-template-columns: 1fr;
+          gap: 46px;
+        }
+
+        .footer-column,
+        .footer-column:last-child {
+          display: flex;
+          grid-column: auto;
+          gap: 42px;
+        }
+
+        .footer-group h3 {
+          margin-bottom: 20px;
+          font-size: 22px;
+        }
+
+        .footer-list {
+          gap: 14px;
+        }
+
+        .footer-link,
+        .footer-contact {
+          display: inline-flex;
+          align-items: center;
+          min-height: 44px;
+          font-size: 17px;
+        }
+
+        .footer-bottom {
+          align-items: flex-start;
+          flex-direction: column;
+          margin-top: 52px;
+          font-size: 14px;
+        }
+
+        .page-footnote {
+          padding: 24px 4px 0;
+        }
       }
     </style>
   </head>
@@ -1901,9 +2128,88 @@
         </div>
       </section>
 
-      <footer class="section page-footnote">
+      <footer class="site-footer">
         <div class="container">
-          <p><span class="footnote-star">*</span> Утверждение „Лучшая“ основано на внутреннем исследовании и сравнении количества отзывов с оценкой 4 и 5 звезд<br>в сервисе Яндекс (Яндекс Карты / Яндекс Бизнес) среди систем, представленных на российском рынке,<br>по состоянию на 31 января 2026 г.</p>
+          <div class="footer-panel">
+            <a class="footer-brand" href="https://workhere.ru/" aria-label="WorkHere">
+              <span class="footer-brand-work">Work</span><span class="footer-brand-here">Here</span>
+            </a>
+
+            <div class="footer-columns">
+              <div class="footer-column">
+                <nav class="footer-group" aria-labelledby="footer-product-title">
+                  <h3 id="footer-product-title">Продукт</h3>
+                  <ul class="footer-list">
+                    <li><a class="footer-link" href="https://workhere.ru/tariffs">Тарифы</a></li>
+                    <li><a class="footer-link" href="#security-title">Безопасность</a></li>
+                    <li><a class="footer-link" href="https://workhere.ru/api">API</a></li>
+                  </ul>
+                </nav>
+
+                <section class="footer-group" aria-labelledby="footer-contacts-title">
+                  <h3 id="footer-contacts-title">Контакты</h3>
+                  <ul class="footer-list">
+                    <li><a class="footer-contact" href="mailto:hello@workhere.ru">hello@workhere.ru</a></li>
+                    <li><a class="footer-contact" href="tel:+74994721210">+7 (499) 472-12-10</a></li>
+                  </ul>
+                </section>
+              </div>
+
+              <div class="footer-column">
+                <nav class="footer-group" aria-labelledby="footer-features-title">
+                  <h3 id="footer-features-title">Возможности</h3>
+                  <ul class="footer-list">
+                    <li><a class="footer-link" href="https://workhere.ru/automation">Автоматизация</a></li>
+                    <li><a class="footer-link" href="https://workhere.ru/integrations">Интеграции</a></li>
+                    <li><a class="footer-link" href="https://workhere.ru/analytics">Аналитика</a></li>
+                    <li><a class="footer-link" href="https://workhere.ru/enterprise">Для крупных клиентов</a></li>
+                  </ul>
+                </nav>
+
+                <nav class="footer-group" aria-labelledby="footer-official-title">
+                  <h3 id="footer-official-title">Официальное</h3>
+                  <ul class="footer-list">
+                    <li><a class="footer-link" href="https://workhere.ru/user-agreement">Пользовательское соглашение</a></li>
+                    <li><a class="footer-link" href="https://workhere.ru/privacy-policy">Политика конфиденциальности</a></li>
+                  </ul>
+                </nav>
+              </div>
+
+              <div class="footer-column">
+                <nav class="footer-group" aria-labelledby="footer-resources-title">
+                  <h3 id="footer-resources-title">Ресурсы</h3>
+                  <ul class="footer-list">
+                    <li><a class="footer-link" href="https://workhere.ru/blog">Журнал WorkHere</a></li>
+                    <li><a class="footer-link" href="https://workhere.ru/cases">Кейсы</a></li>
+                  </ul>
+                </nav>
+
+                <section class="footer-group" aria-labelledby="footer-social-title">
+                  <h3 id="footer-social-title">Социальные сети</h3>
+                  <div class="footer-socials">
+                    <a class="footer-social dzen" href="https://dzen.ru/workhere" aria-label="WorkHere в Дзене">
+                      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="13"/><path d="M13 27l-4 4 1-7a13 13 0 1 1 4 5"/></svg>
+                    </a>
+                    <a class="footer-social telegram" href="https://t.me/workhere" aria-label="WorkHere в Telegram">
+                      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 20L33 8 27 33 19 25 14 30l1-9 12-8-15 6z"/></svg>
+                    </a>
+                    <a class="footer-social vk" href="https://vk.com/workhere" aria-label="WorkHere во ВКонтакте">
+                      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M7 12c2 10 7 17 15 17h3v-6c3 0 5 3 7 6h5c-2-5-5-8-8-10 3-2 6-6 7-10h-6c-1 4-3 7-5 8V9h-6v13c-3-1-6-6-7-10z"/></svg>
+                    </a>
+                  </div>
+                </section>
+              </div>
+            </div>
+
+            <div class="footer-bottom">
+              <p>© ООО “Макрон Цифровые системы”, 2017 - 2026</p>
+              <a href="https://workhere.ru/privacy-policy">Политика конфиденциальности</a>
+            </div>
+          </div>
+
+          <div class="page-footnote">
+            <p><span class="footnote-star">*</span> Утверждение „Лучшая“ основано на внутреннем исследовании и сравнении количества отзывов с оценкой 4 и 5 звезд<br>в сервисе Яндекс (Яндекс Карты / Яндекс Бизнес) среди систем представленных на российском рынке, по состоянию на 31 января 2026 г.</p>
+          </div>
         </div>
       </footer>
     </main>
